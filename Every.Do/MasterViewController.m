@@ -24,12 +24,12 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
-    Todo *toDoOne = [[Todo alloc] initWithTitle:@"Finish assignment" andDescription:@"Every.do" andPriority:10];
+    Todo *toDoOne = [[Todo alloc] initWithTitle:@"Super long title to test multi line functionality lol" andDescription:@"More randomly long run-on sentences to test multi-line functionality, lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." andPriority:10];
     
     Todo *toDoTwo = [[Todo alloc] initWithTitle:@"Take notes" andDescription:@"Finish chapter 2, ECE302" andPriority:8];
     
     Todo *toDoThree = [[Todo alloc] initWithTitle:@"Finish editing photos" andDescription:@"Right Here, Write Now" andPriority:7];
-    
+    toDoTwo.isCompleted = YES;
     self.objects = [[NSMutableArray alloc] init];
     [self.objects addObject:toDoOne];
     [self.objects addObject:toDoTwo];
@@ -63,7 +63,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = self.objects[indexPath.row];
+        Todo *object = self.objects[indexPath.row];
         DetailViewController *controller = (DetailViewController *)[segue destinationViewController];
         [controller setDetailItem:object];
     }

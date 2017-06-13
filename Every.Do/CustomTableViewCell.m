@@ -35,14 +35,34 @@
 {
     //different display if the task has been completed
     if (toDo.isCompleted) {
+        self.title.textColor = [UIColor lightGrayColor];
+        self.desc.textColor = [UIColor lightGrayColor];
+        self.priorityDisplay.textColor = [UIColor lightGrayColor];
         
-        NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:toDo.title];
-        [attributeString addAttribute:NSStrikethroughStyleAttributeName
+        NSMutableAttributedString *attributeTitleString = [[NSMutableAttributedString alloc] initWithString:toDo.title];
+        [attributeTitleString addAttribute:NSStrikethroughStyleAttributeName
                                 value:@2
-                                range:NSMakeRange(0, [attributeString length])];
-        self.title.attributedText = attributeString;
+                                range:NSMakeRange(0, [attributeTitleString length])];
+        self.title.attributedText = attributeTitleString;
+        
+        NSMutableAttributedString *attributeDescString = [[NSMutableAttributedString alloc] initWithString:toDo.toDoDescription];
+        [attributeDescString addAttribute:NSStrikethroughStyleAttributeName
+                                     value:@2
+                                     range:NSMakeRange(0, [attributeDescString length])];
+        self.desc.attributedText = attributeDescString;
+        
+        NSString *tempPriority = [NSString stringWithFormat:@"%ld",toDo.priority ];
+        
+        NSMutableAttributedString *attributePriorityString = [[NSMutableAttributedString alloc] initWithString:tempPriority];
+        [attributePriorityString addAttribute:NSStrikethroughStyleAttributeName
+                                    value:@2
+                                    range:NSMakeRange(0, [attributePriorityString length])];
+        self.priorityDisplay.attributedText = attributePriorityString;
         
     } else {
+        self.title.textColor = [UIColor blackColor];
+        self.desc.textColor = [UIColor blackColor];
+        self.priorityDisplay.textColor = [UIColor blackColor];
         
         self.title.text = toDo.title;
         self.desc.text = toDo.toDoDescription;
