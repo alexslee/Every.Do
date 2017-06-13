@@ -24,6 +24,9 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
+    UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
+    [self.tableView addGestureRecognizer:swipeGesture];
+    
     Todo *toDoOne = [[Todo alloc] initWithTitle:@"Super long title to test multi line functionality lol" andDescription:@"More randomly long run-on sentences to test multi-line functionality, lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." andPriority:5];
     
     Todo *toDoTwo = [[Todo alloc] initWithTitle:@"Take notes" andDescription:@"Finish chapter 2, ECE302" andPriority:4];
@@ -71,6 +74,28 @@
 //    [self.tableView reloadData];
 }
 
+//handle swipe gestures to mark tasks as completed
+- (void)swipeHandler:(UISwipeGestureRecognizer *)sender;
+{
+    CGPoint tap = [sender locationInView:self.tableView];
+    //find the actual cell that was swiped on
+    NSIndexPath *index = [self.tableView indexPathForRowAtPoint:tap];
+    NSIndexPath *end = [NSIndexPath indexPathForRow:[self.objects count]-1 inSection:0];
+    if (!(sender.direction == UISwipeGestureRecognizerDirectionRight)) {
+        //if it wasn't in the right direction, do nothing
+        return;
+    } else {
+        //mark as completed if it hasn't been already
+        Todo *done = self.objects[index.row];
+        if(!done.isCompleted){
+            done.isCompleted = YES;
+        }
+        //move to the end to trigger the redraw with the strikethrough??
+        [self tableView:self.tableView moveRowAtIndexPath:index toIndexPath:end];
+        [self.tableView reloadData];
+    }
+    
+}
 
 #pragma mark - Segues
 
@@ -113,6 +138,17 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     // Return NO if you do not want the specified item to be editable.
     return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Detemine if it's in editing mode
+    if (self.tableView.editing)
+    {
+        return UITableViewCellEditingStyleDelete;
+    }
+    
+    return UITableViewCellEditingStyleNone;
 }
 
 

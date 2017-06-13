@@ -18,6 +18,14 @@
 }
 */
 
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+    if (self == [super initWithCoder:aDecoder]) {
+        self.delegate = self;
+    }
+    return self;
+}
+
+
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     // Check for non-numeric characters
     NSUInteger lengthOfString = string.length;
@@ -25,7 +33,7 @@
     for (NSInteger loopIndex = 0; loopIndex < lengthOfString; loopIndex++) {
         unichar character = [string characterAtIndex:loopIndex];
         if (character < 48) return NO; // 48 unichar for 0
-        if (character > 53) return NO; // 57 unichar for 9
+        if (character > 53) return NO; // 53 unichar for 5
     }
     
     // Check for total length

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PriorityTextField : UITextField
+@interface PriorityTextField : UITextField <UITextFieldDelegate>
+
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
 
 @end
