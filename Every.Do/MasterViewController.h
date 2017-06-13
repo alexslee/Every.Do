@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "Todo.h"
 #import "CustomTableViewCell.h"
+#import "NewTodoViewController.h"
 
 @class DetailViewController;
 
-@interface MasterViewController : UITableViewController
+@interface MasterViewController : UITableViewController <NewToDoDelegate>
 
 
 @end

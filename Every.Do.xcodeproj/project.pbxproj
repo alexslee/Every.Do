@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4383C8621EF058D900B84C43 /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383C85F1EF058D900B84C43 /* CustomTableViewCell.m */; };
 		4383C8631EF058D900B84C43 /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383C8611EF058D900B84C43 /* Todo.m */; };
+		4383C8661EF0623300B84C43 /* NewTodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383C8651EF0623300B84C43 /* NewTodoViewController.m */; };
+		4383C8691EF070B500B84C43 /* PriorityTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 4383C8681EF070B500B84C43 /* PriorityTextField.m */; };
 		438D93DA1EF03CE20056E2A6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 438D93D91EF03CE20056E2A6 /* main.m */; };
 		438D93DD1EF03CE20056E2A6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 438D93DC1EF03CE20056E2A6 /* AppDelegate.m */; };
 		438D93E01EF03CE20056E2A6 /* MasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 438D93DF1EF03CE20056E2A6 /* MasterViewController.m */; };
@@ -23,6 +25,10 @@
 		4383C85F1EF058D900B84C43 /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 		4383C8601EF058D900B84C43 /* Todo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Todo.h; sourceTree = "<group>"; };
 		4383C8611EF058D900B84C43 /* Todo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Todo.m; sourceTree = "<group>"; };
+		4383C8641EF0623300B84C43 /* NewTodoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTodoViewController.h; sourceTree = "<group>"; };
+		4383C8651EF0623300B84C43 /* NewTodoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTodoViewController.m; sourceTree = "<group>"; };
+		4383C8671EF070B500B84C43 /* PriorityTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriorityTextField.h; sourceTree = "<group>"; };
+		4383C8681EF070B500B84C43 /* PriorityTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityTextField.m; sourceTree = "<group>"; };
 		438D93D51EF03CE20056E2A6 /* Every.Do.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Every.Do.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		438D93D91EF03CE20056E2A6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		438D93DB1EF03CE20056E2A6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -77,6 +83,10 @@
 				438D93DF1EF03CE20056E2A6 /* MasterViewController.m */,
 				438D93E11EF03CE20056E2A6 /* DetailViewController.h */,
 				438D93E21EF03CE20056E2A6 /* DetailViewController.m */,
+				4383C8641EF0623300B84C43 /* NewTodoViewController.h */,
+				4383C8651EF0623300B84C43 /* NewTodoViewController.m */,
+				4383C8671EF070B500B84C43 /* PriorityTextField.h */,
+				4383C8681EF070B500B84C43 /* PriorityTextField.m */,
 				438D93E41EF03CE20056E2A6 /* Main.storyboard */,
 				438D93E71EF03CE30056E2A6 /* Assets.xcassets */,
 				438D93E91EF03CE30056E2A6 /* LaunchScreen.storyboard */,
@@ -166,7 +176,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				438D93DD1EF03CE20056E2A6 /* AppDelegate.m in Sources */,
+				4383C8691EF070B500B84C43 /* PriorityTextField.m in Sources */,
 				4383C8631EF058D900B84C43 /* Todo.m in Sources */,
+				4383C8661EF0623300B84C43 /* NewTodoViewController.m in Sources */,
 				438D93E01EF03CE20056E2A6 /* MasterViewController.m in Sources */,
 				438D93DA1EF03CE20056E2A6 /* main.m in Sources */,
 				4383C8621EF058D900B84C43 /* CustomTableViewCell.m in Sources */,

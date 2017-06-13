@@ -24,11 +24,11 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
-    Todo *toDoOne = [[Todo alloc] initWithTitle:@"Super long title to test multi line functionality lol" andDescription:@"More randomly long run-on sentences to test multi-line functionality, lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." andPriority:10];
+    Todo *toDoOne = [[Todo alloc] initWithTitle:@"Super long title to test multi line functionality lol" andDescription:@"More randomly long run-on sentences to test multi-line functionality, lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." andPriority:5];
     
-    Todo *toDoTwo = [[Todo alloc] initWithTitle:@"Take notes" andDescription:@"Finish chapter 2, ECE302" andPriority:8];
+    Todo *toDoTwo = [[Todo alloc] initWithTitle:@"Take notes" andDescription:@"Finish chapter 2, ECE302" andPriority:4];
     
-    Todo *toDoThree = [[Todo alloc] initWithTitle:@"Finish editing photos" andDescription:@"Right Here, Write Now" andPriority:7];
+    Todo *toDoThree = [[Todo alloc] initWithTitle:@"Finish editing photos" andDescription:@"Right Here, Write Now" andPriority:3];
     toDoTwo.isCompleted = YES;
     self.objects = [[NSMutableArray alloc] init];
     [self.objects addObject:toDoOne];
@@ -49,12 +49,26 @@
 
 
 - (void)insertNewObject:(id)sender {
-    if (!self.objects) {
-        self.objects = [[NSMutableArray alloc] init];
-    }
-    [self.objects insertObject:[NSDate date] atIndex:0];
+    [self performSegueWithIdentifier:@"SegueToAddItem" sender:self];
+//    if (!self.objects) {
+//        self.objects = [[NSMutableArray alloc] init];
+//    }
+//    
+//    [self.objects insertObject:[NSDate date] atIndex:0];
+//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+//delegate method
+- (void)addToDoToList:(Todo *)toDo;
+{
+//    [self.objects addObject:toDo];
+    [self.objects insertObject:toDo atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+//    [self.tableView reloadData];
 }
 
 
@@ -66,6 +80,9 @@
         Todo *object = self.objects[indexPath.row];
         DetailViewController *controller = (DetailViewController *)[segue destinationViewController];
         [controller setDetailItem:object];
+    } else if ([[segue identifier] isEqualToString:@"SegueToAddItem"]) {
+        NewTodoViewController *controller = (NewTodoViewController *)[segue destinationViewController];
+        controller.delegate = self;
     }
 }
 
