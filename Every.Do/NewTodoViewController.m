@@ -31,6 +31,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)tapHandler:(UITapGestureRecognizer *)sender {
+    [self.view endEditing:YES];
+}
+
 - (IBAction)donePressed:(UIButton *)sender {
     Todo *toDo = [[Todo alloc] initWithTitle:self.titleEntry.text andDescription:self.descriptionEntry.text andPriority:[self.priorityEntry.text integerValue]];
     [self.delegate addToDoToList:toDo];
