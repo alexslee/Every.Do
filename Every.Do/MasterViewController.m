@@ -53,13 +53,6 @@
 
 - (void)insertNewObject:(id)sender {
     [self performSegueWithIdentifier:@"SegueToAddItem" sender:self];
-//    if (!self.objects) {
-//        self.objects = [[NSMutableArray alloc] init];
-//    }
-//    
-//    [self.objects insertObject:[NSDate date] atIndex:0];
-//    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 //delegate method
@@ -87,12 +80,15 @@
     } else {
         //mark as completed if it hasn't been already
         Todo *done = self.objects[index.row];
-        if(!done.isCompleted){
-            done.isCompleted = YES;
+        if(done.isCompleted){
+            return;
         }
-        //move to the end to trigger the redraw with the strikethrough??
-        [self tableView:self.tableView moveRowAtIndexPath:index toIndexPath:end];
-        [self.tableView reloadData];
+        else {
+            done.isCompleted = YES;
+            //move to the end to trigger the redraw with the strikethrough??
+            [self tableView:self.tableView moveRowAtIndexPath:index toIndexPath:end];
+            [self.tableView reloadData];
+        }
     }
     
 }
@@ -129,8 +125,6 @@
     
     Todo *object = self.objects[indexPath.row];
     [cell makeCellWithToDo:object];
-    //NSDate *object = self.objects[indexPath.row];
-    //cell.textLabel.text = [object description];
     return cell;
 }
 
@@ -142,13 +136,22 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Detemine if it's in editing mode
+    // Determine if it's in editing mode
     if (self.tableView.editing)
     {
         return UITableViewCellEditingStyleDelete;
     }
     
     return UITableViewCellEditingStyleNone;
+}
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    if (fromIndexPath != toIndexPath) {
+        Todo *todo = [self.objects objectAtIndex:fromIndexPath.row];
+        [self.objects removeObjectAtIndex:fromIndexPath.row];
+        [self.objects insertObject:todo atIndex:toIndexPath.row];
+        [self.tableView reloadData];
+    }
 }
 
 
