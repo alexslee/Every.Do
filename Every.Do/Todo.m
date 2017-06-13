@@ -10,12 +10,13 @@
 
 @implementation Todo
 
-- (id)initWithTitle:(NSString *)title andDescription:(NSString *)desc andPriority:(NSInteger)priority;
+- (id)initWithTitle:(NSString *)title andDescription:(NSString *)desc andPriority:(NSInteger)priority andDate:(NSDate *)date;
 {
     if (self == [super init]) {
         _title = title;
         _toDoDescription = desc;
         _priority = priority;
+        _date = date;
         _isCompleted = NO;
     }
     return self;

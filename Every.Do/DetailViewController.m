@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *priorityLabel;
 
+@property (weak, nonatomic) IBOutlet UILabel *deadlineLabel;
 
 @end
 
@@ -42,6 +43,12 @@
         self.titleLabel.text = self.detailItem.title;
         self.descLabel.text = self.detailItem.toDoDescription;
         self.priorityLabel.text = [NSString stringWithFormat:@"%ld", self.detailItem.priority];
+        NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+        [formatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+        [formatter setDateStyle:NSDateFormatterShortStyle];
+        [formatter setTimeStyle:NSDateFormatterShortStyle];
+        NSString *result = [formatter stringFromDate:self.detailItem.date];
+        self.deadlineLabel.text = result;
     }
 }
 

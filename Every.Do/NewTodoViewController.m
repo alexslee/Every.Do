@@ -16,6 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet PriorityTextField *priorityEntry;
 
+@property (weak, nonatomic) IBOutlet UIDatePicker *dateEntry;
 
 @end
 
@@ -36,7 +37,7 @@
 }
 
 - (IBAction)donePressed:(UIButton *)sender {
-    Todo *toDo = [[Todo alloc] initWithTitle:self.titleEntry.text andDescription:self.descriptionEntry.text andPriority:[self.priorityEntry.text integerValue]];
+    Todo *toDo = [[Todo alloc] initWithTitle:self.titleEntry.text andDescription:self.descriptionEntry.text andPriority:[self.priorityEntry.text integerValue] andDate:self.dateEntry.date];
     [self.delegate addToDoToList:toDo];
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }

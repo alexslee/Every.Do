@@ -28,18 +28,20 @@
     
     UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
     [self.tableView addGestureRecognizer:swipeGesture];
+    self.objects = [[NSMutableArray alloc] init];
     
+    //TEST INPUTS (saves you having to input them every run)
+    /*
     Todo *toDoOne = [[Todo alloc] initWithTitle:@"Super long title to test multi line functionality lol" andDescription:@"More randomly long run-on sentences to test multi-line functionality, lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." andPriority:5];
     
     Todo *toDoTwo = [[Todo alloc] initWithTitle:@"Take notes" andDescription:@"Finish chapter 2, ECE302" andPriority:4];
     
     Todo *toDoThree = [[Todo alloc] initWithTitle:@"Finish editing photos" andDescription:@"Right Here, Write Now" andPriority:3];
     toDoTwo.isCompleted = YES;
-    self.objects = [[NSMutableArray alloc] init];
     [self.objects addObject:toDoOne];
     [self.objects addObject:toDoTwo];
     [self.objects addObject:toDoThree];
-    
+    */
 }
 
 
