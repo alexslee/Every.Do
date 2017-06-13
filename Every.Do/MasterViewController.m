@@ -12,12 +12,14 @@
 @interface MasterViewController ()
 
 @property NSMutableArray *objects;
+@property (nonatomic)NSIndexPath *savedSelectedIndexPath;
 @end
 
 @implementation MasterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.clearsSelectionOnViewWillAppear = NO;
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
@@ -42,8 +44,25 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.savedSelectedIndexPath = self.tableView.indexPathForSelectedRow;
+    
+    if (self.savedSelectedIndexPath) {
+        [self.tableView deselectRowAtIndexPath:self.savedSelectedIndexPath animated:YES];
+    }
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    self.savedSelectedIndexPath = nil;
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    if (self.savedSelectedIndexPath) {
+        [self.tableView selectRowAtIndexPath:self.savedSelectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
