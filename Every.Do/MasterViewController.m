@@ -74,8 +74,8 @@
     //find the actual cell that was swiped on
     NSIndexPath *index = [self.tableView indexPathForRowAtPoint:tap];
     NSIndexPath *end = [NSIndexPath indexPathForRow:[self.objects count]-1 inSection:0];
-    if (!(sender.direction == UISwipeGestureRecognizerDirectionRight)) {
-        //if it wasn't in the right direction, do nothing
+    if (!(sender.direction == UISwipeGestureRecognizerDirectionLeft)) {
+        //if it wasn't in the left direction, do nothing
         return;
     } else {
         //mark as completed if it hasn't been already
